@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./TodoForm.css";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import "./TodoGenerator.css";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../reducers/todosSlice";
 
-function TodoForm() {
+function TodoGenerator() {
   const [text, setText] = useState("");
 
   const todoList = useSelector((state) => state.todos);
@@ -38,4 +38,4 @@ function TodoForm() {
   );
 }
 
-export default TodoForm;
+export default TodoGenerator;

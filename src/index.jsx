@@ -10,6 +10,5 @@ root.render(
     <Provider store={store}>
       <TodoApp />
     </Provider>
-    ,
   </React.StrictMode>
 );
