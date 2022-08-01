@@ -1,9 +1,11 @@
 import React from "react";
 import "./TodoList.css";
+import { useSelector } from "react-redux";
 import { getTodos } from "../redux/selectors";
-import { connect } from "react-redux";
 
-function TodoList({ todos }) {
+function TodoList() {
+  const todos = useSelector(getTodos);
+
   return (
     <ul className="todo-list">
       {todos.map((item) => (
@@ -15,10 +17,4 @@ function TodoList({ todos }) {
   );
 }
 
-function mapStateToProps(state) {
-  const todos = getTodos(state);
-  
-  return { todos };
-}
-
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;

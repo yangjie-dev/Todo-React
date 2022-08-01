@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./TodoForm.css";
 import { addTodo } from "../redux/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTodos } from "../redux/selectors";
 
-function TodoForm(props) {
+function TodoForm() {
   const [text, setText] = useState("");
+
+  const todos = useSelector(getTodos);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -18,7 +22,7 @@ function TodoForm(props) {
       return;
     }
 
-    props.addTodo(text);
+    dispatch(addTodo(text));
 
     setText("");
   };
@@ -30,26 +34,15 @@ function TodoForm(props) {
         <input
           required
           type="text"
-          // id="new-todo"
           onChange={handleChange}
           value={text}
         />
         <button className="todo-form__content__button">
-          Add #{props.todos.length + 1}
+          Add #{todos.length + 1}
         </button>
       </form>
     </div>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: (data) => dispatch(addTodo(data)),
-});
-
-function mapStateToProps(state) {
-  const todos = getTodos(state);
-
-  return { todos };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
+export default TodoForm;
