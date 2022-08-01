@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import "./TodoForm.css";
-import { addTodo } from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { getTodos } from "../redux/selectors";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import {addTodo} from "../features/todos/reducers/todosSlice";
 
 function TodoForm() {
   const [text, setText] = useState("");
 
-  const todos = useSelector(getTodos);
+  const todoList = useSelector((state) => state.todos);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setText(e.target.value);
   };
+
+  const store = useStore()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ function TodoForm() {
           value={text}
         />
         <button className="todo-form__content__button">
-          Add #{todos.length + 1}
+          Add #{todoList.length + 1}
         </button>
       </form>
     </div>
