@@ -1,5 +1,10 @@
 import React from "react";
+import "./TodoItem.css";
 
 export function TodoItem(props) {
-  return <li className="todo-list__li--done">{props.item.text}</li>;
+  return (
+    <div className="todo-item">
+      <p className="todo-item__text">{props.item.text}</p>
+    </div>
+  );
 }

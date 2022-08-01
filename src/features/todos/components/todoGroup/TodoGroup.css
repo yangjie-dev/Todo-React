@@ -1,11 +1,11 @@
-.todo-list{
-  list-style-type: square;
-  border-left: 5px solid red;
-  background-color: #f1f1f1;
-  list-style-type: none;
-  padding: 10px 20px;
+.todo-group{
+  background-color: aliceblue;
+  padding: 20px;
+  border: 2px solid cornflowerblue;
+  margin: 20px;
 }
 
-.todo-list__li--done{
-  color: darkgreen;
+.todo-group__item{
+  border: 5px wheat;
+  background-color:  yellow;
 }

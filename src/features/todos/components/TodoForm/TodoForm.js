@@ -28,11 +28,10 @@ function TodoForm() {
 
   return (
     <div className="todo-form">
-      <p> What needs to be done? </p>
       <form onSubmit={handleSubmit} className="todo-form__content">
         <input required type="text" onChange={handleChange} value={text} />
         <button className="todo-form__content__button">
-          Add #{todoList.length + 1}
+          Add Todo #{todoList.length + 1}
         </button>
       </form>
     </div>

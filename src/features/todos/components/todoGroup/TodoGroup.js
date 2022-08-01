@@ -7,11 +7,13 @@ export function TodoGroup() {
   const todos = useSelector((state) => state.todos);
 
   return (
-    <ul className="todo-list">
+    <div className="todo-group">
+      <h2> TodoGroup </h2>
+
       {todos.map((item) => (
         <TodoItem key={item.id} item={item}></TodoItem>
       ))}
-    </ul>
+    </div>
   );
 }
 
