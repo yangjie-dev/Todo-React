@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./TodoForm.css";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import {addTodo} from "../features/todos/reducers/todosSlice";
+import { addTodo } from "../../reducers/todosSlice";
 
 function TodoForm() {
   const [text, setText] = useState("");
@@ -13,8 +13,6 @@ function TodoForm() {
   const handleChange = (e) => {
     setText(e.target.value);
   };
-
-  const store = useStore()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,12 +30,7 @@ function TodoForm() {
     <div className="todo-form">
       <p> What needs to be done? </p>
       <form onSubmit={handleSubmit} className="todo-form__content">
-        <input
-          required
-          type="text"
-          onChange={handleChange}
-          value={text}
-        />
+        <input required type="text" onChange={handleChange} value={text} />
         <button className="todo-form__content__button">
           Add #{todoList.length + 1}
         </button>
