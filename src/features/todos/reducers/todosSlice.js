@@ -10,10 +10,19 @@ export const todosSlice = createSlice({
       },
       prepare: (text) => {
         const id = nanoid();
-        return { payload: { id, text } };
+        const isCompleted = false;
+        return { payload: { id, text, isCompleted } };
+      },
+    },
+    completeTodo: {
+      reducer: (state, action) => {
+        const todo = state.find((todo) => todo.id === action.payload);
+        if (todo) {
+          todo.isCompleted = !todo.isCompleted;
+        }
       },
     },
   },
 });
-export const { addTodo } = todosSlice.actions;
+export const { addTodo, completeTodo } = todosSlice.actions;
 export default todosSlice.reducer;
