@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TodoGenerator.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../reducers/todosSlice";
+import { addTodoApi } from "../../../../apis/todos";
 
 function TodoGenerator() {
   const [text, setText] = useState("");
@@ -21,8 +22,9 @@ function TodoGenerator() {
       return;
     }
 
-    dispatch(addTodo(text));
-
+    addTodoApi(text).then((response) => {
+      dispatch(addTodo(response.data));
+    });
     setText("");
   };
 
