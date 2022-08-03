@@ -3,6 +3,7 @@ import "./TodoGenerator.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../reducers/todosSlice";
 import { addTodoApi } from "../../../../apis/todos";
+import { Form, Input, Button } from "antd";
 
 function TodoGenerator() {
   const [text, setText] = useState("");
@@ -15,14 +16,16 @@ function TodoGenerator() {
     setText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     if (text.length === 0) {
       return;
     }
 
+    console.log(text);
+
     addTodoApi(text).then((response) => {
+      console.log(response.data);
+
       dispatch(addTodo(response.data));
     });
     setText("");
@@ -30,12 +33,16 @@ function TodoGenerator() {
 
   return (
     <div className="todo-form">
-      <form onSubmit={handleSubmit} className="todo-form__content">
-        <input required type="text" onChange={handleChange} value={text} />
-        <button className="todo-form__content__button">
-          Add Todo #{todoList.length + 1}
-        </button>
-      </form>
+      <Form onFinish={handleSubmit} className="todo-form__content">
+        <Form.Item>
+          <Input required type="text" onChange={handleChange} value={text} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="todo-form__content__button">
+            Add Todo #{todoList.length + 1}
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }
