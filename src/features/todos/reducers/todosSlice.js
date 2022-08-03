@@ -12,10 +12,20 @@ export const todosSlice = createSlice({
     },
     completeTodo: {
       reducer: (state, action) => {
-        const todo = state.find((todo) => todo.id === action.payload);
-        if (todo) {
-          todo.isCompleted = !todo.isCompleted;
-        }
+        return state.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, isCompleted: !todo.isCompleted }
+            : todo
+        );
+      },
+    },
+    updateTodo: {
+      reducer: (state, action) => {
+        state.map((todo) =>
+          todo.id === action.id
+            ? { ...todo, text: action.text, isCompleted: action.isCompleted }
+            : todo
+        );
       },
     },
     initTodos: {
@@ -25,5 +35,6 @@ export const todosSlice = createSlice({
     },
   },
 });
-export const { addTodo, completeTodo, initTodos } = todosSlice.actions;
+export const { addTodo, completeTodo, initTodos, updateTodo } =
+  todosSlice.actions;
 export default todosSlice.reducer;

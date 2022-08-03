@@ -21,13 +21,10 @@ function TodoGenerator() {
       return;
     }
 
-    console.log(text);
-
     addTodoApi(text).then((response) => {
-      console.log(response.data);
-
       dispatch(addTodo(response.data));
     });
+    
     setText("");
   };
 
@@ -38,7 +35,11 @@ function TodoGenerator() {
           <Input required type="text" onChange={handleChange} value={text} />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="todo-form__content__button">
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="todo-form__content__button"
+          >
             Add Todo #{todoList.length + 1}
           </Button>
         </Form.Item>
